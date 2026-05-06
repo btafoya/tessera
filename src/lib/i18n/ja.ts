@@ -62,7 +62,7 @@ export const ja: I18nMessages = {
       newlineDesc: 'Enter で改行、Ctrl+Enter で送信',
     },
     windowsCloseBehavior: {
-      label: 'Windows の閉じるボタン',
+      label: '閉じるボタンの動作',
       desc: '記憶した閉じるボタンの動作はここでいつでも変更できます。',
       ask: '毎回確認',
       askDesc: '終了するかトレイに送るかを選べる Tessera の確認画面を表示します。',

@@ -62,7 +62,7 @@ export const en: I18nMessages = {
       newlineDesc: 'Enter for new line, Ctrl+Enter to send',
     },
     windowsCloseBehavior: {
-      label: 'Windows close button',
+      label: 'Close button behavior',
       desc: 'Change the remembered close-button behavior at any time.',
       ask: 'Ask every time',
       askDesc: 'Show a Tessera prompt with quit and tray choices.',

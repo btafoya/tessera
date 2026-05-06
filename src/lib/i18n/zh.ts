@@ -62,7 +62,7 @@ export const zh: I18nMessages = {
       newlineDesc: 'Enter 换行，Ctrl+Enter 发送',
     },
     windowsCloseBehavior: {
-      label: 'Windows 关闭按钮',
+      label: '关闭按钮行为',
       desc: '可随时在这里更改已记住的关闭按钮行为。',
       ask: '每次询问',
       askDesc: '显示 Tessera 提示，让你选择退出或发送到托盘。',

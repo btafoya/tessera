@@ -19,7 +19,7 @@ Open source | Claude Code + Codex + OpenCode | Full CLI workflows in UI | From i
 
 | Link | Purpose |
 |------|---------|
-| [Download Latest Release](https://github.com/horang-labs/tessera/releases) | Get the Windows or macOS desktop beta |
+| [Download Latest Release](https://github.com/horang-labs/tessera/releases) | Get the Windows, macOS, or Linux desktop app |
 | [npm package](https://www.npmjs.com/package/@horang-labs/tessera) | Install the browser runtime |
 | [Team design partner waitlist][design-partner-waitlist] | Help shape team workspaces, permissions, and enterprise adoption |
 | [GitHub Issues](https://github.com/horang-labs/tessera/issues) | Report bugs, rough edges, and feature ideas |
@@ -30,7 +30,7 @@ Open source | Claude Code + Codex + OpenCode | Full CLI workflows in UI | From i
 | Move from chat exploration to isolated worktree tasks | Restarting context when work becomes real |
 | Watch output, reasoning, tool calls, approvals, and workflow events | Treating agent work as a black box |
 | Review files, diffs, branches, and PR state from the same UI | Jumping between terminal, editor, and browser |
-| Use macOS, Windows, or browser-based npm installs | Being locked into one runtime shape |
+| Use macOS, Windows, Linux, or browser-based npm installs | Being locked into one runtime shape |
 
 ## Product Demos
 
@@ -60,7 +60,7 @@ Open new panels, continue an existing conversation, tune reasoning, select model
 
 ### Cross-platform agent workspace
 
-Use the same multi-agent workspace in the browser, on macOS, or on Windows while running Claude Code, Codex, OpenCode, and their model choices side by side.
+Use the same multi-agent workspace in the browser, on macOS, Windows, or Linux while running Claude Code, Codex, OpenCode, and their model choices side by side.
 
 ![Cross-platform agent workspace](https://unpkg.com/@horang-labs/tessera@latest/docs/assets/readme/multi-model-workspace.gif)
 
@@ -78,9 +78,10 @@ Choose the runtime that fits your setup:
 |---------|------------|
 | Windows desktop | Download the portable `.exe` from [GitHub Releases](https://github.com/horang-labs/tessera/releases) |
 | macOS desktop | Download the `.dmg` from [GitHub Releases](https://github.com/horang-labs/tessera/releases) |
+| Linux desktop | Download the `.AppImage` or `.deb` from [GitHub Releases](https://github.com/horang-labs/tessera/releases) |
 | Browser | Install the npm CLI and open the printed local URL |
 
-macOS release DMGs are Developer ID signed and notarized. Windows portable `.exe` builds are not code-signed yet, so Windows SmartScreen may show an unknown-publisher warning. See [Desktop Releases](#desktop-releases).
+macOS release DMGs are Developer ID signed and notarized. Windows portable `.exe` and Linux packages are not code-signed yet. See [Desktop Releases](#desktop-releases).
 
 For the browser runtime:
 
@@ -122,7 +123,7 @@ Tessera is designed for developers who run multiple AI coding sessions and need 
 | Drag-and-drop workspace | Move sessions, arrange workspace structure, and attach context through drag-and-drop interactions |
 | Provider-native controls | Permission prompts, plan approvals, runtime modes, reasoning controls, and provider access controls in the workspace |
 | Model choice through OpenCode | Use the models and providers configured in OpenCode, including local or air-gapped LLM setups |
-| Cross-environment support | macOS, Windows, and browser-based npm runtime |
+| Cross-environment support | macOS, Windows, Linux, and browser-based npm runtime |
 | Unified session history | Session history, multi-agent conversation data, attachments, settings, worktree metadata, and workspace state in one place |
 
 Also included: keyboard-first navigation, browser-native voice input through the Web Speech API in the browser runtime, and a Claude Code skills dashboard discovered from the local environment.
@@ -209,6 +210,7 @@ Desktop release builds use Electron:
 |--------|---------|
 | Windows portable `.exe` | `npm run electron:build:win` |
 | macOS Apple Silicon dev `.dmg` | `npm run electron:build:mac-arm64` |
+| Linux `.AppImage` + `.deb` | `npm run electron:build:linux` |
 
 Electron build outputs are written under `release/`.
 
@@ -255,10 +257,13 @@ Desktop release assets are built by GitHub Actions for `v*` tags and attached to
 
 - Windows portable `.exe` (not code-signed yet)
 - macOS `.dmg` for Apple Silicon and Intel, Developer ID signed and notarized
+- Linux `.AppImage` and `.deb` (not code-signed yet)
 
 macOS release DMGs are signed and notarized with Apple Developer ID, so downloaded releases should open normally on macOS.
 
 Windows release builds are portable `.exe` files and are not code-signed yet. SmartScreen may show an unknown-publisher warning; choose **More info** and then **Run anyway** to start Tessera.
+
+Linux release builds are available as an `.AppImage` (run on any distribution without installation) and a `.deb` package (install on Debian/Ubuntu-based distributions). Mark the AppImage executable before running: `chmod +x Tessera-*.AppImage`.
 
 If Gatekeeper still blocks a macOS release DMG, please report it as a release-signing issue.
 
@@ -266,7 +271,7 @@ See [macOS Distribution](docs/MACOS_DISTRIBUTION.md) for local and CI setup.
 
 ## Status
 
-Tessera is currently published as a beta. Ideas, bug reports, usability feedback, and feature requests are welcome through GitHub Issues, and we actively review them while Tessera evolves. External code contributions are not being accepted yet while the project structure and review process settle.
+Ideas, bug reports, usability feedback, and feature requests are welcome through GitHub Issues, and we actively review them while Tessera evolves. External code contributions are not being accepted yet while the project structure and review process settle.
 
 ## Teams And Design Partners
 

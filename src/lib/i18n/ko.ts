@@ -62,7 +62,7 @@ export const ko: I18nMessages = {
       newlineDesc: 'Enter로 줄바꿈, Ctrl+Enter로 전송',
     },
     windowsCloseBehavior: {
-      label: 'Windows 닫기 버튼',
+      label: '닫기 버튼 동작',
       desc: '닫기 버튼에서 기억한 동작을 여기서 언제든 다시 바꿀 수 있습니다.',
       ask: '매번 묻기',
       askDesc: '종료와 트레이 보내기를 고를 수 있는 Tessera 확인창을 띄웁니다.',

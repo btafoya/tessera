@@ -21,7 +21,7 @@ function getTrayIconPath(): string {
 
 function buildContextMenu(state: TrayState): Menu {
   const { win, onQuit, closeBehavior, onCloseBehaviorChange } = state;
-  const closeBehaviorSubmenu = process.platform === 'win32'
+  const closeBehaviorSubmenu = process.platform !== 'darwin'
     ? [
         { type: 'separator' as const },
         {

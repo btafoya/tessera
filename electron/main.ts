@@ -608,14 +608,14 @@ function createWindow(port: number): BrowserWindow {
     });
   });
 
-  // Windows asks in the renderer so the prompt matches the Tessera UI and can
-  // remember the chosen behavior. Other platforms preserve tray behavior.
+  // Windows and Linux ask in the renderer so the prompt matches the Tessera UI
+  // and can remember the chosen behavior. macOS preserves tray behavior.
   win.on('close', (event) => {
     if (isQuitting) return;
 
     event.preventDefault();
 
-    if (process.platform !== 'win32') {
+    if (process.platform === 'darwin') {
       win.hide();
       return;
     }

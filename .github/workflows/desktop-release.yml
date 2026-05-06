@@ -17,6 +17,11 @@ on:
         required: true
         type: boolean
         default: false
+      build_linux:
+        description: Build and upload Linux AppImage and .deb packages
+        required: true
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -32,7 +37,7 @@ jobs:
     steps:
       - name: Require at least one desktop target
         run: |
-          if [[ "${{ inputs.build_windows }}" != "true" && "${{ inputs.build_macos }}" != "true" ]]; then
+          if [[ "${{ inputs.build_windows }}" != "true" && "${{ inputs.build_macos }}" != "true" && "${{ inputs.build_linux }}" != "true" ]]; then
             echo "At least one desktop target must be enabled."
             exit 1
           fi
@@ -68,6 +73,42 @@ jobs:
         with:
           name: tessera-windows-x64
           path: release/*.exe
+          if-no-files-found: error
+          retention-days: 7
+
+  build-linux:
+    name: Build Linux x64
+    needs: validate
+    if: ${{ inputs.build_linux }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build desktop package
+        run: npm run electron:build:linux
+        env:
+          NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN: ${{ secrets.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN }}
+
+      - name: Upload desktop artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: tessera-linux-x64
+          path: |
+            release/*.AppImage
+            release/*.deb
           if-no-files-found: error
           retention-days: 7
 
@@ -173,6 +214,7 @@ jobs:
     needs:
       - validate
       - build-windows
+      - build-linux
       - build-macos
     if: >-
       ${{
@@ -180,9 +222,11 @@ jobs:
         needs.validate.result == 'success' &&
         needs.build-windows.result != 'failure' &&
         needs.build-windows.result != 'cancelled' &&
+        needs.build-linux.result != 'failure' &&
+        needs.build-linux.result != 'cancelled' &&
         needs.build-macos.result != 'failure' &&
         needs.build-macos.result != 'cancelled' &&
-        (needs.build-windows.result == 'success' || needs.build-macos.result == 'success')
+        (needs.build-windows.result == 'success' || needs.build-linux.result == 'success' || needs.build-macos.result == 'success')
       }}
 
     env:

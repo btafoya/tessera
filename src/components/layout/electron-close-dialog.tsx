@@ -74,7 +74,7 @@ export function ElectronCloseDialog() {
 
   useEffect(() => {
     const electronApi = getElectronApi();
-    if (!electronApi?.isElectron || electronApi.platform !== 'win32') return;
+    if (!electronApi?.isElectron || electronApi.platform === 'darwin') return;
     if (!electronApi.onWindowCloseRequest || !electronApi.respondWindowClose) return;
 
     return electronApi.onWindowCloseRequest((payload) => {
@@ -93,13 +93,13 @@ export function ElectronCloseDialog() {
 
   useEffect(() => {
     const electronApi = getElectronApi();
-    if (!electronApi?.isElectron || electronApi.platform !== 'win32') return;
+    if (!electronApi?.isElectron || electronApi.platform === 'darwin') return;
     electronApi.setWindowsCloseBehavior?.(windowsCloseBehavior);
   }, [windowsCloseBehavior]);
 
   useEffect(() => {
     const electronApi = getElectronApi();
-    if (!electronApi?.isElectron || electronApi.platform !== 'win32') return;
+    if (!electronApi?.isElectron || electronApi.platform === 'darwin') return;
     if (!electronApi.onTitlebarMenuCommand) return;
 
     return electronApi.onTitlebarMenuCommand((command) => {

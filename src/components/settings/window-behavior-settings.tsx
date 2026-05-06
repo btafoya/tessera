@@ -11,7 +11,7 @@ export default function WindowBehaviorSettings() {
   const windowsCloseBehavior = useSettingsStore((state) => state.settings.windowsCloseBehavior);
   const updateSettings = useSettingsStore((state) => state.updateSettings);
 
-  if (electronPlatform !== 'win32') return null;
+  if (electronPlatform !== 'win32' && electronPlatform !== 'linux') return null;
 
   return (
     <div className="space-y-3">
